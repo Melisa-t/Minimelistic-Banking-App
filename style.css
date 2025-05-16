@@ -20,7 +20,8 @@ html {
   font-weight: 500;
   color: var(--dark-grey);
   width: 100%;
-  background-color: var(--grey-); 
+  height: 100%;
+  background-color: var(--grey-);
 }
 
 .nav-bar {
@@ -84,5 +85,48 @@ html {
 }
 
 .app-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.content-container {
+  width: 50%;
+  background-color: white;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.balance-container {
+  width: 100;
+  height: 10%;
+}
+
+.divider {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.bank-activities {
+  width: 50%;
+  height: 100%;
+}
+.functionality-activities {
+  width: 50%;
+  height: 100%;
 }
