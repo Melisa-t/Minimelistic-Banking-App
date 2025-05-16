@@ -259,6 +259,7 @@ body {
 }
 
 .summary-container {
+  color: var(--dark-grey);
   height: 10%;
   width: 100%;
   display: flex;
@@ -267,11 +268,15 @@ body {
 }
 
 .summary {
-  width: 63%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 57%;
+  display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.sort-btn:hover {
+  color: rgba(0, 0, 0, 0.221);
+  cursor: pointer;
 }
 
 .withdraw,
