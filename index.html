@@ -8,53 +8,57 @@
     <script defer src="script.js"></script>
   </head>
   <body>
-    <nav class="nav-bar">
-      <p class="informative-text">Log in to get started</p>
-      <img src="img/logo.png" alt="logo" class="logo" />
-      <div class="log-in-area">
-        <input type="text" placeholder="User" class="input-name" />
-        <input type="text" placeholder="PIN" class="pass" />
-        <input type="button" value="&#8594;" class="log-in-btn btn" />
-      </div>
-    </nav>
-    <div class="app-container">
-      <div class="content-container">
-        <div class="balance-container">
+    <header>
+      <nav class="nav-bar">
+        <p class="informative-text">Log in to get started</p>
+        <img src="img/logo.png" alt="logo" class="logo" />
+        <div class="log-in-area">
+          <input type="text" placeholder="User" class="input-name" />
+          <input type="text" placeholder="PIN" class="pass" />
+          <input type="button" value="&#8594;" class="log-in-btn btn" />
+        </div>
+      </nav>
+    </header>
+
+    <main class="app-container">
+      <section class="content-container">
+        <section class="balance-container">
           <div class="current-balance-text">
             <p>Current Balance</p>
             <div class="date"></div>
           </div>
           <div class="current-balance">25,000</div>
-        </div>
-        <div class="divider">
-          <div class="bank-activities">
-            <div class="activity-row">
+        </section>
+
+        <section class="divider">
+          <section class="bank-activities">
+            <article class="activity-row">
               <div class="activity-date-type-container">
-                <div class="activity-type">
-                </div>
+                <div class="activity-type"></div>
                 <div class="activity-date"></div>
               </div>
               <div class="activity-amount"></div>
-            </div>
-          </div>
-          <div class="functionality-container">
-            <div class="transfer-container">
-              <div class="transfer-header">Transfer Money</div>
+            </article>
+          </section>
+
+          <aside class="functionality-container">
+            <section class="transfer-container">
+              <h2 class="transfer-header">Transfer Money</h2>
               <div class="transfer-input">
                 <div class="transfer-to">
                   <input type="text" id="transfer-to" />
                   <p>Transfer To</p>
                 </div>
-
                 <div class="transfer-amount">
                   <input type="number" id="transfer-amount" />
                   <p>Amount</p>
                 </div>
                 <input type="button" value="&#8594;" class="transfer-btn btn" />
               </div>
-            </div>
-            <div class="request-loan-container">
-              <div class="request-header">Request Money</div>
+            </section>
+
+            <section class="request-loan-container">
+              <h2 class="request-header">Request Money</h2>
               <div class="request-input">
                 <div class="request-amount">
                   <input type="number" id="request-amount" />
@@ -62,36 +66,35 @@
                 </div>
                 <input type="button" value="&#8594;" class="request-btn btn" />
               </div>
-            </div>
-            <div class="close-account-container">
-              <div class="close-header">Close Account</div>
+            </section>
+
+            <section class="close-account-container">
+              <h2 class="close-header">Close Account</h2>
               <div class="close-input">
                 <div class="confirm-user">
                   <input type="text" id="confirm-user" />
                   <p>Confirm User</p>
                 </div>
-
                 <div class="confirm-pin">
                   <input type="text" id="confirm-pin" />
                   <p>Confirm PIN</p>
                 </div>
                 <input type="button" value="&#8594;" class="confirm-btn btn" />
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="summary-container">
+            </section>
+          </aside>
+        </section>
+
+        <footer class="summary-container">
           <div class="summary">
             <div>IN <span class="in-summary"></span></div>
             <div>OUT <span class="out-summary"></span></div>
             <div>INTEREST <span class="interest"></span></div>
-
             <span class="sort-btn">&#8595; SORT</span>
           </div>
-
           <div class="log-out-notice">You will log out in 10</div>
-        </div>
-      </div>
-    </div>
+        </footer>
+      </section>
+    </main>
   </body>
 </html>

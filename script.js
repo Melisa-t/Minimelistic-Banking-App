@@ -53,4 +53,4 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account2.movements);
+displayMovements(account1.movements);
