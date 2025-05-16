@@ -98,7 +98,7 @@ html {
 
 .content-container {
   width: 60%;
-  height: 85%;
+  height: 65vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -142,6 +142,7 @@ body {
   width: 57%;
   height: 100%;
   background-color: white;
+  overflow: scroll;
 }
 .functionality-container {
   width: 40%;
@@ -162,14 +163,25 @@ body {
   justify-content: center;
 }
 .transfer-container input[type="text"],
+.transfer-container input[type="number"],
 .request-loan-container input[type="text"],
+.request-loan-container input[type="number"],
 .close-account-container input[type="text"] {
   padding: 5%;
   width: 8em;
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.605);
+  background-color: rgba(255, 255, 255, 0.5);
   border: none;
   outline: none;
+  transition: 0.5s;
+  font: inherit;
+}
+.transfer-container input[type="text"]:focus,
+.request-loan-container input[type="text"]:focus,
+.close-account-container input[type="text"]:focus,
+.transfer-container input[type="number"]:focus,
+.request-loan-container input[type="number"]:focus {
+  background-color: rgba(255, 255, 255, 0.7);
 }
 .transfer-input .btn,
 .request-input .btn,
@@ -233,4 +245,40 @@ body {
 
 .total-activities-container {
   height: 10%;
+}
+
+.withdraw,
+.deposit {
+  width: 6em;
+  height: 0.7em;
+  border-radius: 10px;
+  padding: 1.5%;
+}
+
+.withdraw {
+  background-color: #557c56;
+}
+.deposit {
+  background-color: #7d0a0a;
+}
+
+.activity-row {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3%;
+}
+
+.activity-date-type-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.activity-type {
+  margin-right: 10%;
 }
