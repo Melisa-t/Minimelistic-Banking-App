@@ -4,12 +4,15 @@
   box-sizing: border-box;
 }
 :root {
-  --dark-red-color: #7d0a0a;
+  --dark-red-color: #A8302C;
   --light-red-color: #da5c53;
+  --red-gradient:  linear-gradient(338deg,rgba(168, 48, 44, 1) 8%, rgba(218, 92, 83, 1) 100%);
   --dark-blue-color: #205781;
   --light-blue-color: #4aa3ba;
+  --blue-gradient: linear-gradient(338deg,rgba(32, 87, 129, 1) 18%, rgba(74, 163, 186, 1) 100%);
   --dark-green-color: #557c56;
   --light-green-color: #a4b465;
+  --green-gradient: linear-gradient(338deg,rgba(85, 124, 86, 1) 18%, rgba(164, 180, 101, 1) 100%);
   --grey-: #efefef;
   --dark-grey: rgb(62, 62, 62);
 }
@@ -127,7 +130,7 @@ body {
 }
 .current-balance-text {
   font-size: 1.5em;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .divider {
@@ -234,13 +237,13 @@ body {
 }
 
 .transfer-container {
-  background-color: var(--light-blue-color);
+  background: var(--blue-gradient);
 }
 .request-loan-container {
-  background-color: var(--light-green-color);
+  background: var(--green-gradient);
 }
 .close-account-container {
-  background-color: var(--light-red-color);
+  background: var(--red-gradient);
 }
 
 .total-activities-container {
@@ -261,11 +264,11 @@ body {
 }
 
 .withdraw {
-  background-color: var(--light-red-color);
+  background: var(--red-gradient);
   width: 12em;
 }
 .deposit {
-  background-color: var(--light-green-color);
+  background: var(--green-gradient);
   width: 10em;
 }
 
@@ -288,4 +291,9 @@ body {
 
 .activity-type {
   margin-right: 10%;
+}
+
+.transfer-header, .request-header, .close-header{
+    font-weight: bold;
+    font-size: 1.1em;
 }
