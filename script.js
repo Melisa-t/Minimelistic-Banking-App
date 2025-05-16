@@ -97,6 +97,15 @@ const calcSummary = function (movements) {
 };
 calcSummary(account1.movements);
 
+const max = account1.movements.reduce((acc, mov) => {
+  if (acc > mov) {
+    return acc
+  } else {
+    return mov
+  }
+}, movements[0]);
+console.log(max);
+
 displayMovements(account1.movements);
 
 const createUserName = function (accArr) {
