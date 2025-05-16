@@ -4,15 +4,27 @@
   box-sizing: border-box;
 }
 :root {
-  --dark-red-color: #A8302C;
+  --dark-red-color: #a8302c;
   --light-red-color: #da5c53;
-  --red-gradient:  linear-gradient(338deg,rgba(168, 48, 44, 1) 8%, rgba(218, 92, 83, 1) 100%);
+  --red-gradient: linear-gradient(
+    338deg,
+    rgba(168, 48, 44, 1) 8%,
+    rgba(218, 92, 83, 1) 100%
+  );
   --dark-blue-color: #205781;
   --light-blue-color: #4aa3ba;
-  --blue-gradient: linear-gradient(338deg,rgba(32, 87, 129, 1) 18%, rgba(74, 163, 186, 1) 100%);
+  --blue-gradient: linear-gradient(
+    338deg,
+    rgba(32, 87, 129, 1) 18%,
+    rgba(74, 163, 186, 1) 100%
+  );
   --dark-green-color: #557c56;
   --light-green-color: #a4b465;
-  --green-gradient: linear-gradient(338deg,rgba(85, 124, 86, 1) 18%, rgba(164, 180, 101, 1) 100%);
+  --green-gradient: linear-gradient(
+    338deg,
+    rgba(85, 124, 86, 1) 18%,
+    rgba(164, 180, 101, 1) 100%
+  );
   --grey-: #efefef;
   --dark-grey: rgb(62, 62, 62);
 }
@@ -246,8 +258,20 @@ body {
   background: var(--red-gradient);
 }
 
-.total-activities-container {
+.summary-container {
   height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2%;
+}
+
+.summary {
+  width: 63%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .withdraw,
@@ -293,7 +317,9 @@ body {
   margin-right: 10%;
 }
 
-.transfer-header, .request-header, .close-header{
-    font-weight: bold;
-    font-size: 1.1em;
+.transfer-header,
+.request-header,
+.close-header {
+  font-weight: bold;
+  font-size: 1.1em;
 }

@@ -27,68 +27,82 @@
           <div class="current-balance">25,000</div>
         </div>
         <div class="divider">
-        <div class="bank-activities">
-           <div class="activity-row">
-            <div class="activity-date-type-container">            
-              <div class="activity-type withdraw">
-                <div class="activity-no">1</div>
-                                <p>WITHDRAWAL</p>
+          <div class="bank-activities">
+            <div class="activity-row">
+              <div class="activity-date-type-container">
+                <div class="activity-type withdraw">
+                  <div class="activity-no">1</div>
+                  <p>WITHDRAWAL</p>
+                </div>
+                <div class="activity-date">16/05/2025</div>
               </div>
-            <div class="activity-date">16/05/2025</div></div>
-            <div class="activity-amount">500$</div>
-          </div>
-          <div class="activity-row">
-            <div class="activity-date-type-container">            
-              <div class="activity-type deposit">
-                <div class="activity-no">1</div>
-                                <p>DEPOSIT</p>
+              <div class="activity-amount">500$</div>
+            </div>
+            <div class="activity-row">
+              <div class="activity-date-type-container">
+                <div class="activity-type deposit">
+                  <div class="activity-no">1</div>
+                  <p>DEPOSIT</p>
+                </div>
+                <div class="activity-date">16/05/2025</div>
               </div>
-            <div class="activity-date">16/05/2025</div></div>
-            <div class="activity-amount">500$</div>
+              <div class="activity-amount">500$</div>
+            </div>
+          </div>
+          <div class="functionality-container">
+            <div class="transfer-container">
+              <div class="transfer-header">Transfer Money</div>
+              <div class="transfer-input">
+                <div class="transfer-to">
+                  <input type="text" id="transfer-to" />
+                  <p>Transfer To</p>
+                </div>
+
+                <div class="transfer-amount">
+                  <input type="number" id="transfer-amount" />
+                  <p>Amount</p>
+                </div>
+                <input type="button" value="&#8594;" class="transfer-btn btn" />
+              </div>
+            </div>
+            <div class="request-loan-container">
+              <div class="request-header">Request Money</div>
+              <div class="request-input">
+                <div class="request-amount">
+                  <input type="number" id="request-amount" />
+                  <p>Amount</p>
+                </div>
+                <input type="button" value="&#8594;" class="request-btn btn" />
+              </div>
+            </div>
+            <div class="close-account-container">
+              <div class="close-header">Close Account</div>
+              <div class="close-input">
+                <div class="confirm-user">
+                  <input type="text" id="confirm-user" />
+                  <p>Confirm User</p>
+                </div>
+
+                <div class="confirm-pin">
+                  <input type="text" id="confirm-pin" />
+                  <p>Confirm PIN</p>
+                </div>
+                <input type="button" value="&#8594;" class="confirm-btn btn" />
+              </div>
+            </div>
           </div>
         </div>
-        <div class="functionality-container">
-        <div class="transfer-container">
-          <div class="transfer-header">Transfer Money</div>
-          <div class="transfer-input">
-            <div class="transfer-to"><input type="text" /><p>Transfer To</p> </div>
-            
-            <div class="transfer-amount"><input type="number" />            <p>Amount</p></div>
-          <input type="button" value="&#8594;" class="transfer-btn btn" />
+        <div class="summary-container">
+          <div class="summary">
+            <div>IN <span class="in-summary"></span></div>
+            <div>OUT <span class="out-summary"></span></div>
+            <div>INTEREST <span class="interest"></span></div>
+
+            <div class="sort-btn">&#8595; SORT</div>
           </div>
 
-
+          <div class="log-out-notice">You will log out in 10</div>
         </div>
-        <div class="request-loan-container">
-          <div class="request-header">Request Money</div>
-          <div class="request-input">
-            <div class="request-amount"><input type="number" />            <p>Amount</p></div>
-          <input type="button" value="&#8594;" class="request-btn btn" />
-          </div>
-
-        </div>
-        <div class="close-account-container">
-          <div class="close-header">Close Account</div>
-          <div class="close-input">
-            <div class="confirm-user"><input type="text" />            <p>Confirm User</p></div>
-
-            <div class="confirm-pin"><input type="text" />            <p>Confirm PIN</p></div>
-           <input type="button" value="&#8594;" class="confirm-btn btn" />
-          </div>
-
-          </div>
-        </div>
-        </div>
-        </div>
-      </div>
-      <div class="summary-container">
-        <div class="summary">
-          <div class="in-summary"></div>
-          <div class="out-summary"></div>
-          <div class="interest"></div>
-          <div class="sort-btn"></div>
-        </div>
-        <div class="log-out-notice"></div>
       </div>
     </div>
   </body>
