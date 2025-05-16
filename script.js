@@ -38,17 +38,17 @@ const account2 = {
 const displayMovements = function (movements) {
   movements.forEach(function (mov, i) {
     let type = mov > 0 ? `deposit` : `withdrawal`;
-
-    const html = `<div class="activity-row">
+    const html = `             <article class="activity-row">
               <div class="activity-date-type-container">
+
                 <div class="activity-type ${type}">
-                  <div class="activity-no">${i + 1}</div>
-                  <p>${type.toUpperCase()}</p>
+                <div class="activity-no">${i + 1}</div>
+                <p>${type.toUpperCase()}</p>
                 </div>
-                <div class="activity-date">16/05/2025</div>
+                <div class="activity-date"></div>
               </div>
               <div class="activity-amount">${mov}</div>
-            </div>`;
+            </article>`;
     bankActivities.insertAdjacentHTML(`afterbegin`, html);
   });
 };
