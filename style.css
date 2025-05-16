@@ -20,7 +20,7 @@ html {
   font-weight: 500;
   color: var(--dark-grey);
   width: 100%;
-  background-color: var(--grey-);
+  background-color: var(--grey-); 
 }
 
 .nav-bar {
@@ -38,7 +38,7 @@ html {
   height: 50px;
 }
 
-input[type="text"] {
+.log-in-area > input[type="text"] {
   transition: border 0.5s;
   padding: 2%;
   width: 7.5em;
@@ -52,7 +52,7 @@ input[type="text"] {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-input[type="button"] {
+.log-in-area > input[type="button"] {
   padding: 2%;
   border: none;
   font-size: 1em;
@@ -67,18 +67,22 @@ input[type="button"] {
   margin: 1em;
 }
 
-input[type="button"]:hover {
+.log-in-area > input[type="button"]:hover {
   cursor: pointer;
 }
-input[type="text"]::placeholder {
+.log-in-area > input[type="text"]::placeholder {
   color: rgb(193, 193, 193);
 }
 
-input:focus {
+.log-in-area > input:focus {
   border: rgb(184, 184, 184) 1px solid;
 }
 
-input[type="button"]:focus {
+.log-in-area > input[type="button"]:focus {
   outline: none;
   border: none;
+}
+
+.app-container {
+
 }
