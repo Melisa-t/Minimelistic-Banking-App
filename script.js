@@ -21,32 +21,42 @@ let activityNo = document.querySelector(`.activity-no`);
 let activityDate = document.querySelector(`.activity-date`);
 let activityAmount = document.querySelector(`.activity-amount`);
 
+let inSummary = document.querySelector(`.in-summary`);
+let outSummary = document.querySelector(`.out-summary`);
+let interestSummary = document.querySelector(`.interest`);
+const sortBtn = document.querySelector(`.sort-btn`);
+
 const account1 = {
   owner: `Melisa Lachev`,
   movements: [200, 400, 500, -300, 1200, -500, 3000],
+  interestRate: 2,
   pin: 4444,
 };
 
 const account2 = {
   owner: `Kristian Lachev`,
   movements: [2000, 4000, 5000, -3000, 12000, -5000, 30000],
+  interestRate: 2,
   pin: 8888,
 };
 
 const account3 = {
   owner: `Busra Onat`,
   movements: [2000, 4000, 5000, -3000, 12000, -5000, 30000],
+  interestRate: 2,
   pin: 7100,
 };
 
 const account4 = {
   owner: `Rumeysa Kilic`,
   movements: [2000, 4000, 5000, -3000, 12000, -5000, 30000],
+  interestRate: 2,
   pin: 8800,
 };
 const account5 = {
   owner: `Buse Boran`,
   movements: [2000, 4000, 5000, -3000, 12000, -5000, 30000],
+  interestRate: 2,
   pin: 5110,
 };
 
@@ -70,9 +80,22 @@ const displayMovements = function (movements) {
 };
 
 const calcAndPrintBalance = function (movements) {
-  const totalBalance = movements.reduce((acc, curr) => acc + curr);
+  const totalBalance = movements.reduce((acc, curr) => acc + curr, 0);
   currentBalance.textContent = totalBalance;
 };
+
+const calcSummary = function (movements) {
+  let moneyIn = movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, curr) => acc + curr, 0);
+  console.log(moneyIn);
+  inSummary.textContent = moneyIn;
+  let moneyOut = String(
+    movements.filter((mov) => mov < 0).reduce((acc, curr) => acc + curr, 0)
+  ).replaceAll(`-`, ``);
+  outSummary.textContent = moneyOut;
+};
+calcSummary(account1.movements);
 
 displayMovements(account1.movements);
 
