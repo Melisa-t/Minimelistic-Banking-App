@@ -7,7 +7,7 @@
   --dark-red-color: #7d0a0a;
   --light-red-color: #bf3131;
   --dark-blue-color: #205781;
-  --light-blue-color: #9acbd0;
+  --light-blue-color: #4AA3BA;
   --dark-green-color: #557c56;
   --light-green-color: #a4b465;
   --grey-: #efefef;
@@ -89,12 +89,10 @@ html {
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .content-container {
   width: 50%;
-  background-color: white;
   height: 85%;
   display: flex;
   flex-direction: column;
@@ -110,8 +108,21 @@ body {
 }
 
 .balance-container {
-  width: 100;
+  width: 100%;
   height: 10%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5% 0;
+}
+.current-balance {
+  font-size: 3em;
+  font-weight: 400;
+}
+.current-balance-text {
+  font-size: 1.5em;
+  font-weight: 400;
 }
 
 .divider {
@@ -123,10 +134,36 @@ body {
 }
 
 .bank-activities {
-  width: 50%;
+  width: 57%;
   height: 100%;
+  background-color: white;
 }
-.functionality-activities {
-  width: 50%;
+.functionality-container {
+  width: 40%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.transfer-container,
+.request-loan-container,
+.close-account-container {
+  padding: 8%;
+  width: 100%;
+  height: 30%;
+  border-radius: 5px;
+}
+
+.transfer-container {
+  background-color: var(--light-blue-color);
+}
+.request-loan-container {
+  background-color: var(--light-green-color);
+}
+.close-account-container {
+  background-color: var(--light-red-color);
+}
+
+.total-activities-container {
+  height: 10%;
 }
