@@ -24,23 +24,39 @@ let activityAmount = document.querySelector(`.activity-amount`);
 const account1 = {
   owner: `Melisa Lachev`,
   movements: [200, 400, 500, -300, 1200, -500, 3000],
-
-  pin: 444,
+  pin: 4444,
 };
 
 const account2 = {
   owner: `Kristian Lachev`,
   movements: [2000, 4000, 5000, -3000, 12000, -5000, 30000],
-
-  pin: 444,
+  pin: 8888,
 };
+
+const account3 = {
+  owner: `Busra Onat`,
+  movements: [2000, 4000, 5000, -3000, 12000, -5000, 30000],
+  pin: 7100,
+};
+
+const account4 = {
+  owner: `Rumeysa Kilic`,
+  movements: [2000, 4000, 5000, -3000, 12000, -5000, 30000],
+  pin: 8800,
+};
+const account5 = {
+  owner: `Buse Boran`,
+  movements: [2000, 4000, 5000, -3000, 12000, -5000, 30000],
+  pin: 5110,
+};
+
+const accounts = [account1, account2, account3, account4, account5];
 
 const displayMovements = function (movements) {
   movements.forEach(function (mov, i) {
     let type = mov > 0 ? `deposit` : `withdrawal`;
     const html = `             <article class="activity-row">
               <div class="activity-date-type-container">
-
                 <div class="activity-type ${type}">
                 <div class="activity-no">${i + 1}</div>
                 <p>${type.toUpperCase()}</p>
@@ -53,4 +69,29 @@ const displayMovements = function (movements) {
   });
 };
 
+const calcAndPrintBalance = function (movements) {
+  const totalBalance = movements.reduce((acc, curr) => acc + curr);
+  currentBalance.textContent = totalBalance;
+};
+
 displayMovements(account1.movements);
+
+const createUserName = function (accArr) {
+  accArr.forEach(function (acc, i) {
+    acc.username = acc.owner
+      .split(` `)
+      .map((acc) => acc[0])
+      .join(``)
+      .toLowerCase();
+  });
+};
+
+createUserName(accounts);
+
+const deposits = account1.movements.filter(function (mov) {
+  return mov > 0;
+});
+
+const withdrawals = account2.movements.filter((mov) => mov < 0);
+
+console.log(deposits);
