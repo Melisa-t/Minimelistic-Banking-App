@@ -279,7 +279,7 @@ body {
   cursor: pointer;
 }
 
-.withdraw,
+.withdrawal,
 .deposit {
   border-radius: 20px;
   padding: 3%;
@@ -292,7 +292,7 @@ body {
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.withdraw {
+.withdrawal {
   background: var(--red-gradient);
   width: 12em;
 }
