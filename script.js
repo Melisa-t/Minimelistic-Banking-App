@@ -33,33 +33,33 @@ const sortBtn = document.querySelector(`.sort-btn`);
 const account1 = {
   owner: `Melisa Lachev`,
   movements: [200, 400, 500, -300, 1200, -500, 3000],
-  interestRate: 2,
+  interestRate: 1.2,
   pin: 4444,
 };
 
 const account2 = {
   owner: `Kristian Lachev`,
-  movements: [2000, 4000, 5000, -3000, 12000, -5000, 30000],
-  interestRate: 2,
+  movements: [200, 400, 500, -300, 1200, -500, 3000],
+  interestRate: 2.4,
   pin: 8888,
 };
 
 const account3 = {
   owner: `Busra Onat`,
-  movements: [2000, 4000, 5000, -3000, 12000, -5000, 30000],
+  movements: [213, 1341, 231, -231, 312, -111, 33131],
   interestRate: 2,
   pin: 7100,
 };
 
 const account4 = {
   owner: `Rumeysa Kilic`,
-  movements: [2000, 4000, 5000, -3000, 12000, -5000, 30000],
+  movements: [1231, 213, 456, -975, 34534, -987, 4642],
   interestRate: 2,
   pin: 8800,
 };
 const account5 = {
   owner: `Buse Boran`,
-  movements: [2000, 4000, 5000, -3000, 12000, -5000, 30000],
+  movements: [3243, 123, 422, -4232, 5242, -2342, 574567],
   interestRate: 2,
   pin: 5110,
 };
@@ -85,7 +85,7 @@ const displayMovements = function (movements) {
 
 const calcAndDisplayBalance = function (movements) {
   const totalBalance = movements.reduce((acc, curr) => acc + curr, 0);
-  currentBalance.textContent =` ${totalBalance}€`;
+  currentBalance.textContent = ` ${totalBalance}€`;
 };
 
 const calcSummary = function (movements) {
@@ -97,11 +97,11 @@ const calcSummary = function (movements) {
     .filter((mov) => mov < 0)
     .reduce((acc, curr) => acc + curr, 0);
   outSummary.textContent = `${Math.abs(moneyOut)}€`;
-  interestRate = movements
+  let interest = movements
     .filter((mov) => mov >= 0)
-    .map((deposit) => (deposit * 1.2) / 100)
-    .reduce((acc, interest) => acc + interest, 0);
-  interestSummary.textContent = `${interestRate}€`;
+    .map((deposit) => (deposit * currentAccount.InterestRate) / 100)
+    .reduce((acc, int) => acc + int, 0);
+  interestSummary.textContent = `${interest}€`;
 };
 
 const displayUI = function (currentAccount) {
@@ -110,7 +110,7 @@ const displayUI = function (currentAccount) {
   }!`;
   userInput.value = ``;
   userPass.value = ``;
-  appContainer.style.opacity = 100
+  appContainer.style.opacity = 100;
 };
 
 const createUserName = function (accArr) {
@@ -131,15 +131,12 @@ const deposits = account1.movements.filter(function (mov) {
 
 const withdrawals = account2.movements.filter((mov) => mov < 0);
 
-console.log(deposits);
-
 let currentAccount;
 
 logInBtn.addEventListener(`click`, () => {
   currentAccount = accounts.find(
     (accounts) => accounts.username === userInput.value
   );
-  console.log(currentAccount);
   if (currentAccount?.pin === Number(userPass.value)) {
     //display ui msg, movements, balance, summary
     displayMovements(currentAccount.movements);
