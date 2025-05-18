@@ -111,6 +111,7 @@ html {
   display: flex;
   justify-content: center;
   transition: 0.2s;
+  opacity: 0;
 }
 
 .content-container {
@@ -349,8 +350,4 @@ body {
 .close-header {
   font-weight: bold;
   font-size: 1.1em;
-}
-
-.hidden {
-  display: none;
 }
