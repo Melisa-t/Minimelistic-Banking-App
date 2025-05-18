@@ -108,8 +108,7 @@ const displayUI = function (currentAccount) {
   informativeText.textContent = `Welcome, ${
     currentAccount.owner.split(` `)[0]
   }!`;
-  userInput.value = ``;
-  userPass.value = ``;
+  userInput.value = userPass.value = ``;
   appContainer.style.opacity = 100;
 };
 
