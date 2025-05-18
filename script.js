@@ -110,6 +110,7 @@ const displayUI = function (currentAccount) {
   }!`;
   userInput.value = userPass.value = ``;
   appContainer.style.opacity = 100;
+  userPass.blur();
 };
 
 const createUserName = function (accArr) {
