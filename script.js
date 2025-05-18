@@ -77,7 +77,7 @@ const displayMovements = function (movements) {
                 </div>
                 <div class="activity-date"></div>
               </div>
-              <div class="activity-amount">${mov}</div>
+              <div class="activity-amount">${mov}€</div>
             </article>`;
     bankActivities.insertAdjacentHTML(`afterbegin`, html);
   });
@@ -85,23 +85,23 @@ const displayMovements = function (movements) {
 
 const calcAndDisplayBalance = function (movements) {
   const totalBalance = movements.reduce((acc, curr) => acc + curr, 0);
-  currentBalance.textContent = totalBalance;
+  currentBalance.textContent =` ${totalBalance}€`;
 };
 
 const calcSummary = function (movements) {
   let moneyIn = movements
     .filter((mov) => mov > 0)
     .reduce((acc, curr) => acc + curr, 0);
-  inSummary.textContent = moneyIn;
+  inSummary.textContent = ` ${moneyIn}€`;
   let moneyOut = movements
     .filter((mov) => mov < 0)
     .reduce((acc, curr) => acc + curr, 0);
-  outSummary.textContent = Math.abs(moneyOut);
+  outSummary.textContent = `${Math.abs(moneyOut)}€`;
   interestRate = movements
     .filter((mov) => mov >= 0)
     .map((deposit) => (deposit * 1.2) / 100)
     .reduce((acc, interest) => acc + interest, 0);
-  interestSummary.textContent = interestRate;
+  interestSummary.textContent = `${interestRate}€`;
 };
 
 const displayUI = function (currentAccount) {
