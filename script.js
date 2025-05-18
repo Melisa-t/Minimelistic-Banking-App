@@ -1,7 +1,11 @@
 const userInput = document.querySelector(`.input-name`);
 const userPass = document.querySelector(`.pass`);
+const logInBtn = document.querySelector(`.log-in-btn`);
 
 const date = document.querySelector(`.date`);
+const appContainer = document.querySelector(`.app-container`);
+
+let informativeText = document.querySelector(`.informative-text`);
 
 const currentBalance = document.querySelector(`.current-balance`);
 
@@ -79,7 +83,7 @@ const displayMovements = function (movements) {
   });
 };
 
-const calcAndPrintBalance = function (movements) {
+const calcAndDisplayBalance = function (movements) {
   const totalBalance = movements.reduce((acc, curr) => acc + curr, 0);
   currentBalance.textContent = totalBalance;
 };
@@ -88,25 +92,26 @@ const calcSummary = function (movements) {
   let moneyIn = movements
     .filter((mov) => mov > 0)
     .reduce((acc, curr) => acc + curr, 0);
-  console.log(moneyIn);
   inSummary.textContent = moneyIn;
-  let moneyOut = String(
-    movements.filter((mov) => mov < 0).reduce((acc, curr) => acc + curr, 0)
-  ).replaceAll(`-`, ``);
-  outSummary.textContent = moneyOut;
+  let moneyOut = movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, curr) => acc + curr, 0);
+  outSummary.textContent = Math.abs(moneyOut);
+  interestRate = movements
+    .filter((mov) => mov >= 0)
+    .map((deposit) => (deposit * 1.2) / 100)
+    .reduce((acc, interest) => acc + interest, 0);
+  interestSummary.textContent = interestRate;
 };
-calcSummary(account1.movements);
 
-const max = account1.movements.reduce((acc, mov) => {
-  if (acc > mov) {
-    return acc
-  } else {
-    return mov
-  }
-}, movements[0]);
-console.log(max);
-
-displayMovements(account1.movements);
+const displayUI = function (currentAccount) {
+  informativeText.textContent = `Welcome, ${
+    currentAccount.owner.split(` `)[0]
+  }!`;
+  userInput.value = ``;
+  userPass.value = ``;
+  appContainer.classList.remove("hidden");
+};
 
 const createUserName = function (accArr) {
   accArr.forEach(function (acc, i) {
@@ -127,3 +132,19 @@ const deposits = account1.movements.filter(function (mov) {
 const withdrawals = account2.movements.filter((mov) => mov < 0);
 
 console.log(deposits);
+
+let currentAccount;
+
+logInBtn.addEventListener(`click`, () => {
+  currentAccount = accounts.find(
+    (accounts) => accounts.username === userInput.value
+  );
+  console.log(currentAccount);
+  if (currentAccount?.pin === Number(userPass.value)) {
+    //display ui msg, movements, balance, summary
+    displayMovements(currentAccount.movements);
+    calcAndDisplayBalance(currentAccount.movements);
+    calcSummary(currentAccount.movements);
+    displayUI(currentAccount);
+  }
+});

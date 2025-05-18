@@ -81,6 +81,7 @@ html {
 
 .informative-text {
   margin: 1em;
+  transition: 0.2s;
 }
 
 .btn:hover {
@@ -109,6 +110,7 @@ html {
   height: 100%;
   display: flex;
   justify-content: center;
+  transition: 0.2s;
 }
 
 .content-container {
@@ -183,7 +185,7 @@ body {
 .request-loan-container input[type="number"],
 .close-account-container input[type="text"] {
   padding: 5%;
-  width: 8em;
+  width: 60%;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.5);
   border: none;
@@ -201,8 +203,8 @@ body {
 .transfer-input .btn,
 .request-input .btn,
 .close-input .btn {
-  width: 4em;
-  height: 2em;
+  width: 20%;
+  height: 55%;
   border: none;
   border-radius: 5px;
 }
@@ -214,6 +216,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
   margin: 5% 0;
 }
 
@@ -222,10 +225,11 @@ body {
   font-size: 1em;
   display: flex;
   flex-direction: row;
+
   margin: 5% 0;
 }
 .request-input .btn {
-  margin-left: 10%;
+  margin-left: 5%;
 }
 
 .confirm-user,
@@ -283,11 +287,12 @@ body {
   margin-left: 1em;
 }
 
-.in-summary, .interest {
-  color:var(--dark-green-color)
+.in-summary,
+.interest {
+  color: var(--dark-green-color);
 }
 
-.out-summary{
+.out-summary {
   color: var(--dark-red-color);
 }
 
@@ -344,4 +349,8 @@ body {
 .close-header {
   font-weight: bold;
   font-size: 1.1em;
+}
+
+.hidden {
+  display: none;
 }
