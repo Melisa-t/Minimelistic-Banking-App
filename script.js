@@ -15,11 +15,12 @@ let transferTo = document.getElementById("transfer-to");
 let transferAmount = document.getElementById("transfer-amount");
 const transferBtn = document.querySelector(`.transfer-btn`);
 
-let requestAmount = document.getElementById("request.amount");
+let requestAmount = document.getElementById("request-amount");
 const requestBtn = document.querySelector(`.request-btn`);
 
 let confirmUser = document.getElementById("confirm-user");
 let confirmPIN = document.getElementById("confirm-pin");
+const confirmBtn = document.querySelector(`.confirm-btn`);
 
 let activityNo = document.querySelector(`.activity-no`);
 let activityDate = document.querySelector(`.activity-date`);
@@ -35,6 +36,7 @@ const account1 = {
   movements: [200, 400, 500, -300, 1200, -500, 3000],
   interestRate: 1.2,
   pin: 4444,
+  currency: `лв`,
 };
 
 const account2 = {
@@ -42,6 +44,7 @@ const account2 = {
   movements: [200, 400, 500, -300, 1200, -500, 3000],
   interestRate: 2.4,
   pin: 8888,
+  currency: `€`,
 };
 
 const account3 = {
@@ -49,6 +52,7 @@ const account3 = {
   movements: [213, 1341, 231, -231, 312, -111, 33131],
   interestRate: 2,
   pin: 7100,
+  currency: `₺`,
 };
 
 const account4 = {
@@ -56,12 +60,14 @@ const account4 = {
   movements: [1231, 213, 456, -975, 34534, -987, 4642],
   interestRate: 2,
   pin: 8800,
+  currency: `₺`,
 };
 const account5 = {
   owner: `Buse Boran`,
   movements: [3243, 123, 422, -4232, 5242, -2342, 574567],
   interestRate: 2,
   pin: 5110,
+  currency: `$`,
 };
 
 const accounts = [account1, account2, account3, account4, account5];
@@ -77,7 +83,7 @@ const displayMovements = function (acc) {
                 </div>
                 <div class="activity-date"></div>
               </div>
-              <div class="activity-amount">${mov}€</div>
+              <div class="activity-amount">${mov}${acc.currency}</div>
             </article>`;
     bankActivities.insertAdjacentHTML(`afterbegin`, html);
   });
@@ -85,23 +91,23 @@ const displayMovements = function (acc) {
 
 const calcAndDisplayBalance = function (acc) {
   acc.totalBalance = acc.movements.reduce((acc, curr) => acc + curr, 0);
-  currentBalance.textContent = ` ${acc.totalBalance}€`;
+  currentBalance.textContent = ` ${acc.totalBalance}${acc.currency}`;
 };
 
 const calcSummary = function (acc) {
   let moneyIn = acc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, curr) => acc + curr, 0);
-  inSummary.textContent = ` ${moneyIn}€`;
+  inSummary.textContent = ` ${moneyIn}${acc.currency}`;
   let moneyOut = acc.movements
     .filter((mov) => mov < 0)
     .reduce((acc, curr) => acc + curr, 0);
-  outSummary.textContent = `${Math.abs(moneyOut)}€`;
+  outSummary.textContent = `${Math.abs(moneyOut)}${acc.currency}`;
   let interest = acc.movements
     .filter((mov) => mov >= 0)
     .map((dep) => dep * (acc.interestRate / 100))
     .reduce((accu, int) => accu + int, 0);
-  interestSummary.textContent = `${interest}€`;
+  interestSummary.textContent = `${Number(interest.toFixed(2))}${acc.currency}`;
 };
 
 const displayUI = function (currentAccount) {
@@ -175,14 +181,42 @@ const sendMoney = function (acc) {
   transferTo.value = transferAmount.value = ``;
 };
 
-const requestMoney = function () {
+const requestMoney = function (acc) {
   //user types in the amount they want,  and after clicking on btn
   // the amount is deposited into their account
-  //and is into other account as a withdrawal
-  // if user does not have enough money, alert
-  currentAccount.movements;
+  if (Number(requestAmount.value) > 0) {
+    acc.movements.push(Number(requestAmount.value));
+    updateDisplay(currentAccount);
+  }
+
+  requestAmount.value = ``;
 };
+
+requestBtn.addEventListener(`click`, () => {
+  requestMoney(currentAccount);
+});
 
 transferBtn.addEventListener(`click`, () => {
   sendMoney(currentAccount);
+});
+
+const closeAccount = function (currentAccount) {
+  //find index of the account entered in the accounts array
+  //use splice method to remove it from the array
+  if (
+    confirmUser.value === currentAccount.username &&
+    Number(confirmPIN.value) === currentAccount.pin
+  ) {
+    const accIndex = accounts.findIndex(
+      (acc) => acc.username === currentAccount.username
+    );
+    accounts.splice(accIndex, 1);
+    appContainer.style.opacity = 0;
+    informativeText.textContent = `Log in to get started`;
+    confirmUser.value = confirmPIN.value = ``;
+  }
+};
+
+confirmBtn.addEventListener(`click`, () => {
+  closeAccount(currentAccount);
 });
