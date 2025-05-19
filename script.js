@@ -7,7 +7,7 @@ const appContainer = document.querySelector(`.app-container`);
 
 let informativeText = document.querySelector(`.informative-text`);
 
-const currentBalance = document.querySelector(`.current-balance`);
+let currentBalance = document.querySelector(`.current-balance`);
 
 const bankActivities = document.querySelector(`.bank-activities`);
 
@@ -66,8 +66,8 @@ const account5 = {
 
 const accounts = [account1, account2, account3, account4, account5];
 
-const displayMovements = function (movements) {
-  movements.forEach(function (mov, i) {
+const displayMovements = function (acc) {
+  acc.movements.forEach(function (mov, i) {
     let type = mov > 0 ? `deposit` : `withdrawal`;
     const html = `             <article class="activity-row">
               <div class="activity-date-type-container">
@@ -83,24 +83,25 @@ const displayMovements = function (movements) {
   });
 };
 
-const calcAndDisplayBalance = function (movements) {
-  const totalBalance = movements.reduce((acc, curr) => acc + curr, 0);
+let totalBalance;
+const calcAndDisplayBalance = function (acc) {
+  totalBalance = acc.movements.reduce((acc, curr) => acc + curr, 0);
   currentBalance.textContent = ` ${totalBalance}€`;
 };
 
-const calcSummary = function (movements) {
-  let moneyIn = movements
+const calcSummary = function (acc) {
+  let moneyIn = acc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, curr) => acc + curr, 0);
   inSummary.textContent = ` ${moneyIn}€`;
-  let moneyOut = movements
+  let moneyOut = acc.movements
     .filter((mov) => mov < 0)
     .reduce((acc, curr) => acc + curr, 0);
   outSummary.textContent = `${Math.abs(moneyOut)}€`;
-  let interest = movements
+  let interest = acc.movements
     .filter((mov) => mov >= 0)
-    .map((deposit) => (deposit * currentAccount.InterestRate) / 100)
-    .reduce((acc, int) => acc + int, 0);
+    .map((dep) => dep * (acc.interestRate / 100))
+    .reduce((accu, int) => accu + int, 0);
   interestSummary.textContent = `${interest}€`;
 };
 
@@ -125,12 +126,6 @@ const createUserName = function (accArr) {
 
 createUserName(accounts);
 
-const deposits = account1.movements.filter(function (mov) {
-  return mov > 0;
-});
-
-const withdrawals = account2.movements.filter((mov) => mov < 0);
-
 let currentAccount;
 
 logInBtn.addEventListener(`click`, () => {
@@ -139,9 +134,38 @@ logInBtn.addEventListener(`click`, () => {
   );
   if (currentAccount?.pin === Number(userPass.value)) {
     //display ui msg, movements, balance, summary
-    displayMovements(currentAccount.movements);
-    calcAndDisplayBalance(currentAccount.movements);
-    calcSummary(currentAccount.movements);
+    displayMovements(currentAccount);
+    calcAndDisplayBalance(currentAccount);
+    calcSummary(currentAccount);
     displayUI(currentAccount);
   }
+});
+let receiverAccount;
+const sendMoney = function () {
+  ///take value from transfer amount and push it to transfer name
+  //that amoutn will be withdrawal from the current account
+  receiverAccount = accounts.find(
+    (accounts) => accounts.username === transferTo.value
+  );
+  if (
+    receiverAccount !== currentAccount &&
+    !(receiverAccount === undefined || receiverAccount === null) &&
+    Number(transferAmount.value) <= totalBalance
+  ) {
+    receiverAccount?.movements.push(Number(transferAmount.value));
+    currentAccount.movements.push(Number(`-${transferAmount.value}`));
+    displayMovements(currentAccount);
+    calcAndDisplayBalance(currentAccount);
+    calcSummary(currentAccount);
+  } else if (receiverAccount === undefined || receiverAccount === null) {
+    alert(`Please choose a valid account!`);
+  } else if (totalBalance < 0 || Number(transferAmount.value) > totalBalance) {
+    alert(`You don't have enough money!`);
+  } else {
+    alert(`Please choose an account that is not yours!`);
+  }
+};
+
+transferBtn.addEventListener(`click`, () => {
+  sendMoney();
 });
