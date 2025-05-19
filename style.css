@@ -148,6 +148,11 @@ body {
   font-weight: 600;
 }
 
+.date-text {
+  font-size: 1em;
+  color: var(grey);
+} 
+
 .divider {
   width: 100%;
   height: 90%;

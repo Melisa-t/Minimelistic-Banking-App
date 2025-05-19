@@ -192,9 +192,11 @@ const requestMoney = function (acc) {
     (mov) => mov >= (loan * 10) / 100
   );
 
-  if (TenPercentDeposit) {
+  if (loan > 0 && TenPercentDeposit) {
     acc.movements.push(Number(requestAmount.value));
     updateDisplay(currentAccount);
+  } else if (loan <= 0) {
+    alert(`Please enter a valid value!`);
   } else {
     alert(
       `You need to have a previous deposit of at least 10% of the requested amount! `
