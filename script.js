@@ -127,15 +127,19 @@ createUserName(accounts);
 
 let currentAccount;
 
+const updateDisplay = function (currentAccount) {
+  displayMovements(currentAccount);
+  calcAndDisplayBalance(currentAccount);
+  calcSummary(currentAccount);
+};
+
 logInBtn.addEventListener(`click`, () => {
   currentAccount = accounts.find(
     (accounts) => accounts.username === userInput.value
   );
   if (currentAccount?.pin === Number(userPass.value)) {
     //display ui msg, movements, balance, summary
-    displayMovements(currentAccount);
-    calcAndDisplayBalance(currentAccount);
-    calcSummary(currentAccount);
+    updateDisplay(currentAccount);
     displayUI(currentAccount);
   }
 });
@@ -148,16 +152,14 @@ const sendMoney = function (acc) {
     (accounts) => accounts.username === transferTo.value
   );
   if (
-    receiverAccount !== currentAccount &&
-    !(receiverAccount === undefined || receiverAccount === null) &&
+    receiverAccount?.username !== currentAccount.username &&
+    receiverAccount &&
     Number(transferAmount.value) <= acc.totalBalance &&
     Number(transferAmount.value) > 0
   ) {
     receiverAccount?.movements.push(Number(transferAmount.value));
     currentAccount.movements.push(Number(`-${transferAmount.value}`));
-    displayMovements(currentAccount);
-    calcAndDisplayBalance(currentAccount);
-    calcSummary(currentAccount);
+    updateDisplay(currentAccount);
   } else if (receiverAccount === undefined || receiverAccount === null) {
     alert(`Please choose a valid account!`);
   } else if (
@@ -170,6 +172,7 @@ const sendMoney = function (acc) {
   } else {
     alert(`Please choose an account that is not yours!`);
   }
+  transferTo.value = transferAmount.value = ``;
 };
 
 const requestMoney = function () {
