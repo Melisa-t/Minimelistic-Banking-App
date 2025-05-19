@@ -111,7 +111,7 @@ const calcSummary = function (acc) {
 };
 
 const displayUI = function (currentAccount) {
-  informativeText.textContent = `Welcome, ${
+  informativeText.textContent = `Welcome back, ${
     currentAccount.owner.split(` `)[0]
   }!`;
   userInput.value = userPass.value = ``;
