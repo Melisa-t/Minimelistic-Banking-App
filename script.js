@@ -72,8 +72,11 @@ const account5 = {
 
 const accounts = [account1, account2, account3, account4, account5];
 
-const displayMovements = function (acc) {
-  acc.movements.forEach(function (mov, i) {
+const displayMovements = function (acc, sort = false) {
+  const sorts = sort
+    ? acc.movements.slice().sort((a, b) => a - b)
+    : acc.movements;
+  sorts.forEach(function (mov, i) {
     let type = mov > 0 ? `deposit` : `withdrawal`;
     const html = `             <article class="activity-row">
               <div class="activity-date-type-container">
@@ -234,3 +237,5 @@ const closeAccount = function (currentAccount) {
 confirmBtn.addEventListener(`click`, () => {
   closeAccount(currentAccount);
 });
+
+sortBtn.addEventListener(`click`, () => {});

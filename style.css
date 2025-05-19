@@ -137,21 +137,17 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 5% 0;
+  margin: 1% 0;
 }
 .current-balance {
   font-size: 3em;
   font-weight: 400;
 }
-.current-balance-text {
+.current-balance-text > .balance-text {
   font-size: 1.5em;
   font-weight: 600;
 }
 
-.date-text {
-  font-size: 1em;
-  color: var(grey);
-} 
 
 .divider {
   width: 100%;
@@ -231,7 +227,7 @@ body {
   font-size: 1em;
   display: flex;
   flex-direction: row;
-
+justify-content: space-between;
   margin: 5% 0;
 }
 .request-input .btn {
@@ -245,8 +241,8 @@ body {
 .transfer-to {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+
+  justify-content: space-between  ;
   font-size: 0.9rem;
 }
 
@@ -356,3 +352,8 @@ body {
   font-weight: bold;
   font-size: 1.1em;
 }
+
+.date-text {
+  font-size: 1em;
+  color: grey;
+} 
