@@ -83,10 +83,9 @@ const displayMovements = function (acc) {
   });
 };
 
-let totalBalance;
 const calcAndDisplayBalance = function (acc) {
-  totalBalance = acc.movements.reduce((acc, curr) => acc + curr, 0);
-  currentBalance.textContent = ` ${totalBalance}€`;
+  acc.totalBalance = acc.movements.reduce((acc, curr) => acc + curr, 0);
+  currentBalance.textContent = ` ${acc.totalBalance}€`;
 };
 
 const calcSummary = function (acc) {
@@ -141,7 +140,8 @@ logInBtn.addEventListener(`click`, () => {
   }
 });
 let receiverAccount;
-const sendMoney = function () {
+
+const sendMoney = function (acc) {
   ///take value from transfer amount and push it to transfer name
   //that amoutn will be withdrawal from the current account
   receiverAccount = accounts.find(
@@ -150,7 +150,8 @@ const sendMoney = function () {
   if (
     receiverAccount !== currentAccount &&
     !(receiverAccount === undefined || receiverAccount === null) &&
-    Number(transferAmount.value) <= totalBalance
+    Number(transferAmount.value) <= acc.totalBalance &&
+    Number(transferAmount.value) > 0
   ) {
     receiverAccount?.movements.push(Number(transferAmount.value));
     currentAccount.movements.push(Number(`-${transferAmount.value}`));
@@ -159,13 +160,26 @@ const sendMoney = function () {
     calcSummary(currentAccount);
   } else if (receiverAccount === undefined || receiverAccount === null) {
     alert(`Please choose a valid account!`);
-  } else if (totalBalance < 0 || Number(transferAmount.value) > totalBalance) {
+  } else if (
+    acc.totalBalance < 0 ||
+    Number(transferAmount.value) > acc.totalBalance
+  ) {
     alert(`You don't have enough money!`);
+  } else if (Number(transferAmount.value) === 0) {
+    alert(`Enter a valid value!`);
   } else {
     alert(`Please choose an account that is not yours!`);
   }
 };
 
+const requestMoney = function () {
+  //user types in the amount they want,  and after clicking on btn
+  // the amount is deposited into their account
+  //and is into other account as a withdrawal
+  // if user does not have enough money, alert
+  currentAccount.movements;
+};
+
 transferBtn.addEventListener(`click`, () => {
-  sendMoney();
+  sendMoney(currentAccount);
 });
