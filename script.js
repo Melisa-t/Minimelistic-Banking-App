@@ -73,6 +73,7 @@ const account5 = {
 const accounts = [account1, account2, account3, account4, account5];
 
 const displayMovements = function (acc, sort = false) {
+  bankActivities.innerHTML = ``;
   const sorts = sort
     ? acc.movements.slice().sort((a, b) => a - b)
     : acc.movements;
@@ -238,4 +239,9 @@ confirmBtn.addEventListener(`click`, () => {
   closeAccount(currentAccount);
 });
 
-sortBtn.addEventListener(`click`, () => {});
+let sorted = false;
+
+sortBtn.addEventListener(`click`, () => {
+  displayMovements(currentAccount, !sorted);
+  sorted = !sorted;
+});
