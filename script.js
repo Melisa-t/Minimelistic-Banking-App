@@ -184,9 +184,21 @@ const sendMoney = function (acc) {
 const requestMoney = function (acc) {
   //user types in the amount they want,  and after clicking on btn
   // the amount is deposited into their account
-  if (Number(requestAmount.value) > 0) {
+  console.log(currentAccount.movements);
+
+  const loan = Number(requestAmount.value);
+  console.log(loan);
+  const TenPercentDeposit = acc.movements.some(
+    (mov) => mov >= (loan * 10) / 100
+  );
+
+  if (TenPercentDeposit) {
     acc.movements.push(Number(requestAmount.value));
     updateDisplay(currentAccount);
+  } else {
+    alert(
+      `You need to have a previous deposit of at least 10% of the requested amount! `
+    );
   }
 
   requestAmount.value = ``;
