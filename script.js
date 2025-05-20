@@ -195,6 +195,7 @@ logInBtn.addEventListener(`click`, () => {
     displayUI(currentAccount);
   } else {
     openModal();
+    userInput.value = userPass.value = ``;
   }
 });
 let receiverAccount;
