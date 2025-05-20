@@ -197,17 +197,21 @@ const accounts = [
 
 const displayMovements = function (acc, sort = false) {
   bankActivities.innerHTML = ``;
-  const sorts = sort
-    ? acc.movements.slice().sort((a, b) => a - b)
-    : acc.movements;
-
-  sorts.forEach(function (mov, i) {
-    const date = new Date(acc.movementsDates[i]);
+  const combinedMovementAndDates = currentAccount.movements.map((mov, i) => ({
+    movement: mov,
+    movementDate: currentAccount.movementsDates.at(i),
+  }));
+  if (sort) {
+    combinedMovementAndDates.sort((a, b) => a.movement - b.movement);
+  }
+  combinedMovementAndDates.forEach(function (obj, i) {
+    const { movement, movementDate } = obj;
+    const date = new Date(movementDate);
     const day = `${date.getDate()}`.padStart(2, 0);
     const month = `${date.getMonth() + 1}`.padStart(2, 0);
     const year = date.getFullYear();
     const displayDate = `${day}/${month}/${year}`;
-    let type = mov > 0 ? `deposit` : `withdrawal`;
+    let type = movement > 0 ? `deposit` : `withdrawal`;
     const html = `             <article class="activity-row">
               <div class="activity-date-type-container">
                 <div class="activity-type ${type}">
@@ -216,7 +220,7 @@ const displayMovements = function (acc, sort = false) {
                 </div>
                 <div class="activity-date">${displayDate}</div>
               </div>
-              <div class="activity-amount">${mov.toFixed(2)}${
+              <div class="activity-amount">${movement.toFixed(2)}${
       acc.currency
     }</div>
             </article>`;
