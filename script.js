@@ -74,7 +74,7 @@ const account6 = {
   owner: `Halim Ş.`,
   movements: [4363, 8967, 213, -57563, 45643, -4564, 4564],
   interestRate: 1.2,
-  pin: 9999,
+  pin: 1010,
   currency: `₺`,
 };
 
