@@ -18,6 +18,19 @@
           <input type="button" value="&#8594;" class="log-in-btn btn" />
         </div>
       </nav>
+
+      <div class="modal-container">
+        <div class="modal-window hidden">
+          <div class="modal-header">One of the inputs is incorrect.</div>
+          <div class="close-btn">X</div>
+          <div class="modal-text-container">
+            <div class="modal-text">
+              <p>Check your credentials!</p>
+            </div>
+            <img src="img/judgy.gif" alt="Judging Cat" />
+          </div>
+        </div>
+      </div>
     </header>
 
     <main class="app-container">
@@ -25,7 +38,7 @@
         <section class="balance-container">
           <div class="current-balance-text">
             <p class="balance-text">Current Balance</p>
-            <p class="date-text">As of <div class="date"></div></p>
+            <p class="date-text">As of<span class="date"></span></p>
           </div>
           <div class="current-balance">25,000</div>
         </section>
@@ -88,5 +101,6 @@
         </footer>
       </section>
     </main>
+    <div class="overlay hidden"></div>
   </body>
 </html>

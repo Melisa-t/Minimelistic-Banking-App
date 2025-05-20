@@ -102,7 +102,17 @@ const account9 = {
   currency: `₺`,
 };
 
-const accounts = [account1, account2, account3, account4, account5, account6, account7, account8, account9];
+const accounts = [
+  account1,
+  account2,
+  account3,
+  account4,
+  account5,
+  account6,
+  account7,
+  account8,
+  account9,
+];
 
 const displayMovements = function (acc, sort = false) {
   bankActivities.innerHTML = ``;
@@ -183,6 +193,8 @@ logInBtn.addEventListener(`click`, () => {
     //display ui msg, movements, balance, summary
     updateDisplay(currentAccount);
     displayUI(currentAccount);
+  } else {
+    openModal();
   }
 });
 let receiverAccount;
@@ -276,4 +288,46 @@ let sorted = false;
 sortBtn.addEventListener(`click`, () => {
   displayMovements(currentAccount, !sorted);
   sorted = !sorted;
+});
+
+const modalBtn = document.querySelectorAll(`.modal-btn`);
+const overlay = document.querySelector(`.overlay`);
+const modalContainer = document.querySelector(`.modal-container`);
+const closeBtn = document.querySelector(`.close-btn`);
+const modalWindow = document.querySelector(`.modal-window`);
+
+const openModal = function () {
+  // for (let i = 0; i < modalBtn.length; i++) {
+  //     modalBtn[i].classList.toggle(`hidden`)
+  //     };
+  modalWindow.classList.remove(`hidden`);
+  overlay.style.display = `block`;
+};
+
+const closeModal = function () {
+  modalWindow.classList.add(`hidden`);
+  overlay.style.display = `none`;
+};
+
+for (let i = 0; i < modalBtn.length; i++) {
+  modalBtn[i].addEventListener(`click`, () => {
+    openModal();
+  });
+}
+
+closeBtn.addEventListener(`click`, () => {
+  closeModal();
+  //   for (let i = 0; i < modalBtn.length; i++) {
+  //     modalBtn[i].classList.toggle(`hidden`)
+  //     };
+});
+
+overlay.addEventListener(`click`, () => {
+  closeModal();
+});
+
+document.addEventListener(`keydown`, function (e) {
+  if (modalWindow.className !== `hidden` && e.key === `Escape`) {
+    closeModal();
+  }
 });
