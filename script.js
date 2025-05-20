@@ -303,7 +303,9 @@ const sendMoney = function (acc) {
   ) {
     receiverAccount?.movements.push(Number(transferAmount.value));
     currentAccount.movements.push(Number(`-${transferAmount.value}`));
-    acc.movementsDates.push(now);
+    currentAccount.movementsDates.push(now.toISOString());
+    receiverAccount.movementsDates.push(now.toISOString());
+
     updateDisplay(currentAccount);
   } else if (receiverAccount === undefined || receiverAccount === null) {
     alert(`Please choose a valid account!`);
@@ -330,7 +332,7 @@ const requestMoney = function (acc) {
 
   if (loan > 0 && TenPercentDeposit) {
     acc.movements.push(loan);
-    acc.movementsDates.push(now);
+    acc.movementsDates.push(now.toISOString());
     updateDisplay(currentAccount);
   } else if (loan <= 0) {
     alert(`Please enter a valid value!`);
@@ -425,6 +427,6 @@ const now = new Date();
 const day = `${now.getDate()}`.padStart(2, 0);
 const month = `${now.getMonth() + 1}`.padStart(2, 0);
 const year = now.getFullYear();
-const hour = now.getHours();
-const minutes = now.getMinutes();
+const hour = `${now.getHours()}`.padStart(2, 0);
+const minutes = `${now.getMinutes()}`.padStart(2, 0);
 date.textContent = ` ${day}/${month}/${year}, ${hour}:${minutes}`;
