@@ -129,7 +129,7 @@ const displayMovements = function (acc, sort = false) {
                 </div>
                 <div class="activity-date"></div>
               </div>
-              <div class="activity-amount">${mov}${acc.currency}</div>
+              <div class="activity-amount">${mov.toFixed(2)}${acc.currency}</div>
             </article>`;
     bankActivities.insertAdjacentHTML(`afterbegin`, html);
   });
@@ -137,18 +137,18 @@ const displayMovements = function (acc, sort = false) {
 
 const calcAndDisplayBalance = function (acc) {
   acc.totalBalance = acc.movements.reduce((acc, curr) => acc + curr, 0);
-  currentBalance.textContent = ` ${acc.totalBalance}${acc.currency}`;
+  currentBalance.textContent = ` ${acc.totalBalance.toFixed(2)}${acc.currency}`;
 };
 
 const calcSummary = function (acc) {
   let moneyIn = acc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, curr) => acc + curr, 0);
-  inSummary.textContent = ` ${moneyIn}${acc.currency}`;
+  inSummary.textContent = ` ${moneyIn.toFixed(2)}${acc.currency}`;
   let moneyOut = acc.movements
     .filter((mov) => mov < 0)
     .reduce((acc, curr) => acc + curr, 0);
-  outSummary.textContent = `${Math.abs(moneyOut)}${acc.currency}`;
+  outSummary.textContent = `${Math.abs(moneyOut.toFixed(2))}${acc.currency}`;
   let interest = acc.movements
     .filter((mov) => mov >= 0)
     .map((dep) => dep * (acc.interestRate / 100))
@@ -235,14 +235,14 @@ const requestMoney = function (acc) {
   // the amount is deposited into their account
   console.log(currentAccount.movements);
 
-  const loan = Number(requestAmount.value);
+  const loan = Math.floor(requestAmount.value);
   console.log(loan);
   const TenPercentDeposit = acc.movements.some(
     (mov) => mov >= (loan * 10) / 100
   );
 
   if (loan > 0 && TenPercentDeposit) {
-    acc.movements.push(Number(requestAmount.value));
+    acc.movements.push(loan);
     updateDisplay(currentAccount);
   } else if (loan <= 0) {
     alert(`Please enter a valid value!`);
