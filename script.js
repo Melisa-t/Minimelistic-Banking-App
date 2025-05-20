@@ -37,6 +37,16 @@ const account1 = {
   interestRate: 1.2,
   pin: 4444,
   currency: `лв`,
+  movementsDates: [
+    "2023-11-18T21:31:17.178Z",
+    "2023-12-23T07:42:02.383Z",
+    "2023-01-28T09:15:04.904Z",
+    "2024-04-01T10:17:24.185Z",
+    "2024-05-08T14:11:59.604Z",
+    "2024-05-27T17:01:17.194Z",
+    "2024-07-11T23:36:17.929Z",
+    "2024-07-12T10:51:36.790Z",
+  ],
 };
 
 const account2 = {
@@ -45,6 +55,16 @@ const account2 = {
   interestRate: 2.4,
   pin: 8888,
   currency: `€`,
+  movementsDates: [
+    "2023-11-18T21:31:17.178Z",
+    "2023-12-23T07:42:02.383Z",
+    "2023-01-28T09:15:04.904Z",
+    "2024-04-01T10:17:24.185Z",
+    "2024-05-08T14:11:59.604Z",
+    "2024-05-27T17:01:17.194Z",
+    "2024-07-11T23:36:17.929Z",
+    "2024-07-12T10:51:36.790Z",
+  ],
 };
 
 const account3 = {
@@ -53,6 +73,16 @@ const account3 = {
   interestRate: 2,
   pin: 1010,
   currency: `₺`,
+  movementsDates: [
+    "2023-11-18T21:31:17.178Z",
+    "2023-12-23T07:42:02.383Z",
+    "2023-01-28T09:15:04.904Z",
+    "2024-04-01T10:17:24.185Z",
+    "2024-05-08T14:11:59.604Z",
+    "2024-05-27T17:01:17.194Z",
+    "2024-07-11T23:36:17.929Z",
+    "2024-07-12T10:51:36.790Z",
+  ],
 };
 
 const account4 = {
@@ -61,6 +91,16 @@ const account4 = {
   interestRate: 2,
   pin: 8888,
   currency: `₺`,
+  movementsDates: [
+    "2023-11-18T21:31:17.178Z",
+    "2023-12-23T07:42:02.383Z",
+    "2023-01-28T09:15:04.904Z",
+    "2024-04-01T10:17:24.185Z",
+    "2024-05-08T14:11:59.604Z",
+    "2024-05-27T17:01:17.194Z",
+    "2024-07-11T23:36:17.929Z",
+    "2024-07-12T10:51:36.790Z",
+  ],
 };
 const account5 = {
   owner: `Buse B.`,
@@ -68,6 +108,16 @@ const account5 = {
   interestRate: 2,
   pin: 1111,
   currency: `$`,
+  movementsDates: [
+    "2023-11-18T21:31:17.178Z",
+    "2023-12-23T07:42:02.383Z",
+    "2023-01-28T09:15:04.904Z",
+    "2024-04-01T10:17:24.185Z",
+    "2024-05-08T14:11:59.604Z",
+    "2024-05-27T17:01:17.194Z",
+    "2024-07-11T23:36:17.929Z",
+    "2024-07-12T10:51:36.790Z",
+  ],
 };
 
 const account6 = {
@@ -76,6 +126,16 @@ const account6 = {
   interestRate: 1.2,
   pin: 1010,
   currency: `₺`,
+  movementsDates: [
+    "2023-11-18T21:31:17.178Z",
+    "2023-12-23T07:42:02.383Z",
+    "2023-01-28T09:15:04.904Z",
+    "2024-04-01T10:17:24.185Z",
+    "2024-05-08T14:11:59.604Z",
+    "2024-05-27T17:01:17.194Z",
+    "2024-07-11T23:36:17.929Z",
+    "2024-07-12T10:51:36.790Z",
+  ],
 };
 
 const account7 = {
@@ -84,6 +144,16 @@ const account7 = {
   interestRate: 1.2,
   pin: 9999,
   currency: `₺`,
+  movementsDates: [
+    "2023-10-18T21:31:17.178Z",
+    "2023-12-23T07:42:02.383Z",
+    "2023-01-28T09:15:04.904Z",
+    "2024-04-01T10:17:24.185Z",
+    "2024-05-08T14:11:59.604Z",
+    "2024-05-27T17:01:17.194Z",
+    "2024-07-11T23:36:17.929Z",
+    "2024-07-12T10:51:36.790Z",
+  ],
 };
 
 const account8 = {
@@ -92,6 +162,16 @@ const account8 = {
   interestRate: 1.2,
   pin: 3333,
   currency: `₺`,
+  movementsDates: [
+    "2023-11-18T21:31:17.178Z",
+    "2023-12-23T07:42:02.383Z",
+    "2023-05-28T09:15:04.904Z",
+    "2024-06-01T10:17:24.185Z",
+    "2024-07-08T14:11:59.604Z",
+    "2024-07-27T17:01:17.194Z",
+    "2024-08-11T23:36:17.929Z",
+    "2024-09-12T10:51:36.790Z",
+  ],
 };
 
 const account9 = {
@@ -100,6 +180,16 @@ const account9 = {
   interestRate: 1.2,
   pin: 2222,
   currency: `₺`,
+  movementsDates: [
+    "2023-10-18T21:31:17.178Z",
+    "2023-12-23T07:42:02.383Z",
+    "2024-02-28T09:15:04.904Z",
+    "2024-04-01T10:17:24.185Z",
+    "2024-05-08T14:11:59.604Z",
+    "2024-05-27T17:01:17.194Z",
+    "2024-07-11T23:36:17.929Z",
+    "2024-07-12T10:51:36.790Z",
+  ],
 };
 
 const accounts = [
@@ -119,7 +209,13 @@ const displayMovements = function (acc, sort = false) {
   const sorts = sort
     ? acc.movements.slice().sort((a, b) => a - b)
     : acc.movements;
+
   sorts.forEach(function (mov, i) {
+    const date = new Date(acc.movementsDates[i]);
+    const day = `${date.getDate()}`.padStart(2, 0);;
+    const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    const year = date.getFullYear();
+    const displayDate = `${day}/${month}/${year}`;
     let type = mov > 0 ? `deposit` : `withdrawal`;
     const html = `             <article class="activity-row">
               <div class="activity-date-type-container">
@@ -127,9 +223,11 @@ const displayMovements = function (acc, sort = false) {
                 <div class="activity-no">${i + 1}</div>
                 <p>${type.toUpperCase()}</p>
                 </div>
-                <div class="activity-date"></div>
+                <div class="activity-date">${displayDate}</div>
               </div>
-              <div class="activity-amount">${mov.toFixed(2)}${acc.currency}</div>
+              <div class="activity-amount">${mov.toFixed(2)}${
+      acc.currency
+    }</div>
             </article>`;
     bankActivities.insertAdjacentHTML(`afterbegin`, html);
   });
@@ -332,3 +430,15 @@ document.addEventListener(`keydown`, function (e) {
     closeModal();
   }
 });
+
+const createDate = function () {
+  const now = new Date();
+  const day = `${now.getDate()}`.padStart(2, 0);
+  const month = `${now.getMonth() + 1}`.padStart(2, 0);
+  const year = now.getFullYear();
+  const hour = now.getHours();
+  const minutes = now.getMinutes();
+  date.textContent = ` ${day}/${month}/${year}, ${hour}:${minutes}`;
+};
+
+createDate();

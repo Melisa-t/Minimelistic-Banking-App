@@ -161,7 +161,6 @@ body {
   height: 100%;
   background-color: white;
   overflow: scroll;
-  padding: 2%;
 }
 
 .functionality-container {
@@ -333,6 +332,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 3%;
+  border-bottom: var(--grey-) 2px solid;
 }
 
 .activity-date-type-container {
