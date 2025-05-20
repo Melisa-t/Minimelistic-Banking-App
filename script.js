@@ -48,29 +48,61 @@ const account2 = {
 };
 
 const account3 = {
-  owner: `Busra Onat`,
+  owner: `Busra O.`,
   movements: [213, 1341, 231, -231, 312, -111, 33131],
   interestRate: 2,
-  pin: 7100,
+  pin: 1010,
   currency: `₺`,
 };
 
 const account4 = {
-  owner: `Rumeysa Kilic`,
+  owner: `Rumeysa K.`,
   movements: [1231, 213, 456, -975, 34534, -987, 4642],
   interestRate: 2,
-  pin: 8800,
+  pin: 8888,
   currency: `₺`,
 };
 const account5 = {
-  owner: `Buse Boran`,
-  movements: [3243, 123, 422, -4232, 5242, -2342, 574567],
+  owner: `Buse B.`,
+  movements: [43452, 123, 422, -4232, 5242, -2342, 574567],
   interestRate: 2,
-  pin: 5110,
+  pin: 1111,
   currency: `$`,
 };
 
-const accounts = [account1, account2, account3, account4, account5];
+const account6 = {
+  owner: `Halim Ş.`,
+  movements: [4363, 8967, 213, -57563, 45643, -4564, 4564],
+  interestRate: 1.2,
+  pin: 9999,
+  currency: `₺`,
+};
+
+const account7 = {
+  owner: `Sımay G.`,
+  movements: [234500, 657, 567, -3453, 654, -3453, 3453],
+  interestRate: 1.2,
+  pin: 9999,
+  currency: `₺`,
+};
+
+const account8 = {
+  owner: `Ilayda M. T.`,
+  movements: [3242785, 2342, 2342, -324, 2342, -423, 234],
+  interestRate: 1.2,
+  pin: 3333,
+  currency: `₺`,
+};
+
+const account9 = {
+  owner: `Sena T. K.`,
+  movements: [200, 403240, 503240, -323400, 123400, -53200, 3000],
+  interestRate: 1.2,
+  pin: 2222,
+  currency: `₺`,
+};
+
+const accounts = [account1, account2, account3, account4, account5, account6, account7, account8, account9];
 
 const displayMovements = function (acc, sort = false) {
   bankActivities.innerHTML = ``;
