@@ -45,7 +45,6 @@ const account1 = {
     "2024-05-08T14:11:59.604Z",
     "2024-05-27T17:01:17.194Z",
     "2024-07-11T23:36:17.929Z",
-    "2024-07-12T10:51:36.790Z",
   ],
 };
 
@@ -63,7 +62,6 @@ const account2 = {
     "2024-05-08T14:11:59.604Z",
     "2024-05-27T17:01:17.194Z",
     "2024-07-11T23:36:17.929Z",
-    "2024-07-12T10:51:36.790Z",
   ],
 };
 
@@ -81,7 +79,6 @@ const account3 = {
     "2024-05-08T14:11:59.604Z",
     "2024-05-27T17:01:17.194Z",
     "2024-07-11T23:36:17.929Z",
-    "2024-07-12T10:51:36.790Z",
   ],
 };
 
@@ -99,7 +96,6 @@ const account4 = {
     "2024-05-08T14:11:59.604Z",
     "2024-05-27T17:01:17.194Z",
     "2024-07-11T23:36:17.929Z",
-    "2024-07-12T10:51:36.790Z",
   ],
 };
 const account5 = {
@@ -116,7 +112,6 @@ const account5 = {
     "2024-05-08T14:11:59.604Z",
     "2024-05-27T17:01:17.194Z",
     "2024-07-11T23:36:17.929Z",
-    "2024-07-12T10:51:36.790Z",
   ],
 };
 
@@ -134,7 +129,6 @@ const account6 = {
     "2024-05-08T14:11:59.604Z",
     "2024-05-27T17:01:17.194Z",
     "2024-07-11T23:36:17.929Z",
-    "2024-07-12T10:51:36.790Z",
   ],
 };
 
@@ -152,7 +146,6 @@ const account7 = {
     "2024-05-08T14:11:59.604Z",
     "2024-05-27T17:01:17.194Z",
     "2024-07-11T23:36:17.929Z",
-    "2024-07-12T10:51:36.790Z",
   ],
 };
 
@@ -170,7 +163,6 @@ const account8 = {
     "2024-07-08T14:11:59.604Z",
     "2024-07-27T17:01:17.194Z",
     "2024-08-11T23:36:17.929Z",
-    "2024-09-12T10:51:36.790Z",
   ],
 };
 
@@ -188,7 +180,6 @@ const account9 = {
     "2024-05-08T14:11:59.604Z",
     "2024-05-27T17:01:17.194Z",
     "2024-07-11T23:36:17.929Z",
-    "2024-07-12T10:51:36.790Z",
   ],
 };
 
@@ -212,7 +203,7 @@ const displayMovements = function (acc, sort = false) {
 
   sorts.forEach(function (mov, i) {
     const date = new Date(acc.movementsDates[i]);
-    const day = `${date.getDate()}`.padStart(2, 0);;
+    const day = `${date.getDate()}`.padStart(2, 0);
     const month = `${date.getMonth() + 1}`.padStart(2, 0);
     const year = date.getFullYear();
     const displayDate = `${day}/${month}/${year}`;
@@ -312,6 +303,7 @@ const sendMoney = function (acc) {
   ) {
     receiverAccount?.movements.push(Number(transferAmount.value));
     currentAccount.movements.push(Number(`-${transferAmount.value}`));
+    acc.movementsDates.push(now);
     updateDisplay(currentAccount);
   } else if (receiverAccount === undefined || receiverAccount === null) {
     alert(`Please choose a valid account!`);
@@ -331,16 +323,14 @@ const sendMoney = function (acc) {
 const requestMoney = function (acc) {
   //user types in the amount they want,  and after clicking on btn
   // the amount is deposited into their account
-  console.log(currentAccount.movements);
-
   const loan = Math.floor(requestAmount.value);
-  console.log(loan);
   const TenPercentDeposit = acc.movements.some(
     (mov) => mov >= (loan * 10) / 100
   );
 
   if (loan > 0 && TenPercentDeposit) {
     acc.movements.push(loan);
+    acc.movementsDates.push(now);
     updateDisplay(currentAccount);
   } else if (loan <= 0) {
     alert(`Please enter a valid value!`);
@@ -431,14 +421,10 @@ document.addEventListener(`keydown`, function (e) {
   }
 });
 
-const createDate = function () {
-  const now = new Date();
-  const day = `${now.getDate()}`.padStart(2, 0);
-  const month = `${now.getMonth() + 1}`.padStart(2, 0);
-  const year = now.getFullYear();
-  const hour = now.getHours();
-  const minutes = now.getMinutes();
-  date.textContent = ` ${day}/${month}/${year}, ${hour}:${minutes}`;
-};
-
-createDate();
+const now = new Date();
+const day = `${now.getDate()}`.padStart(2, 0);
+const month = `${now.getMonth() + 1}`.padStart(2, 0);
+const year = now.getFullYear();
+const hour = now.getHours();
+const minutes = now.getMinutes();
+date.textContent = ` ${day}/${month}/${year}, ${hour}:${minutes}`;
