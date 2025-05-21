@@ -311,7 +311,7 @@ const createUserName = function (accArr) {
 
 createUserName(accounts);
 
-let currentAccount, timer;
+let currentAccount, timer, updater;
 
 const updateDisplay = function (currentAccount) {
   displayMovements(currentAccount);
@@ -328,6 +328,16 @@ logInBtn.addEventListener(`click`, () => {
     //display ui msg, movements, balance, summary
     updateDisplay(currentAccount);
     displayUI(currentAccount);
+    updateBalanceText();
+  } else {
+    openModal();
+    userInput.value = userPass.value = ``;
+  }
+});
+let receiverAccount;
+
+const updateBalanceText = function () {
+  const updateText = function () {
     const now = new Date();
     const options = {
       hour: "numeric",
@@ -336,17 +346,15 @@ logInBtn.addEventListener(`click`, () => {
       month: "2-digit",
       year: "numeric",
     };
-
     dateLabel.textContent = ` ${new Intl.DateTimeFormat(
       currentAccount.locale,
       options
     ).format(now)}`;
-  } else {
-    openModal();
-    userInput.value = userPass.value = ``;
-  }
-});
-let receiverAccount;
+  };
+  updateText();
+  updater = setInterval(updateText, 1000);
+  return updater;
+};
 
 const sendMoney = function (acc) {
   ///take value from transfer amount and push it to transfer name
