@@ -36,7 +36,7 @@ const account1 = {
   movements: [200, 400, 500, -300, 1200, -500, 3000],
   interestRate: 1.2,
   pin: 4444,
-  currency: `лв`,
+  currency: `BGN`,
   movementsDates: [
     "2025-02-18T17:01:17.194Z",
     "2025-03-19T17:01:17.194Z",
@@ -53,7 +53,7 @@ const account2 = {
   movements: [200, 400, 500, -300, 1200, -500, 3000],
   interestRate: 2.4,
   pin: 8888,
-  currency: `€`,
+  currency: `EUR`,
   movementsDates: [
     "2025-02-18T17:01:17.194Z",
     "2025-03-19T17:01:17.194Z",
@@ -71,7 +71,7 @@ const account3 = {
   movements: [213, 1341, 231, -231, 312, -111, 33131],
   interestRate: 2,
   pin: 1010,
-  currency: `₺`,
+  currency: `TRY`,
   movementsDates: [
     "2025-02-18T17:01:17.194Z",
     "2025-03-19T17:01:17.194Z",
@@ -89,7 +89,7 @@ const account4 = {
   movements: [1231, 213, 456, -975, 34534, -987, 4642],
   interestRate: 2,
   pin: 8888,
-  currency: `₺`,
+  currency: `TRY`,
   movementsDates: [
     "2025-02-18T17:01:17.194Z",
     "2025-03-19T17:01:17.194Z",
@@ -106,7 +106,7 @@ const account5 = {
   movements: [43452, 123, 422, -4232, 5242, -2342, 574567],
   interestRate: 2,
   pin: 1111,
-  currency: `₺`,
+  currency: `TRY`,
   movementsDates: [
     "2025-02-18T17:01:17.194Z",
     "2025-03-19T17:01:17.194Z",
@@ -124,7 +124,7 @@ const account6 = {
   movements: [4363, 8967, 213, -57563, 45643, -4564, 4564],
   interestRate: 1.2,
   pin: 1010,
-  currency: `₺`,
+  currency: `CNY`,
   movementsDates: [
     "2025-02-18T17:01:17.194Z",
     "2025-03-19T17:01:17.194Z",
@@ -142,7 +142,7 @@ const account7 = {
   movements: [234500, 657, 567, -3453, 654, -3453, 3453],
   interestRate: 1.2,
   pin: 9999,
-  currency: `₺`,
+  currency: `CNY`,
   movementsDates: [
     "2025-02-18T17:01:17.194Z",
     "2025-03-19T17:01:17.194Z",
@@ -160,7 +160,7 @@ const account8 = {
   movements: [3242785, 2342, 2342, -324, 2342, -423, 234],
   interestRate: 1.2,
   pin: 3333,
-  currency: `₺`,
+  currency: `TRY`,
   movementsDates: [
     "2025-02-18T17:01:17.194Z",
     "2025-03-19T17:01:17.194Z",
@@ -178,7 +178,7 @@ const account9 = {
   movements: [200, 403240, 503240, -323400, 123400, -53200, 3000],
   interestRate: 1.2,
   pin: 2222,
-  currency: `₺`,
+  currency: `TRY`,
   movementsDates: [
     "2025-02-18T17:01:17.194Z",
     "2025-03-19T17:01:17.194Z",
@@ -216,6 +216,13 @@ const calcMovementDates = function (date, locale) {
   }
 };
 
+const formatCur = function (value, locale, currency) {
+  return new Intl.NumberFormat(locale, {
+    style: `currency`,
+    currency: currency,
+  }).format(value);
+};
+
 const displayMovements = function (acc, sort = false) {
   bankActivities.innerHTML = ``;
   const combinedMovementAndDates = currentAccount.movements.map((mov, i) => ({
@@ -238,9 +245,11 @@ const displayMovements = function (acc, sort = false) {
                 </div>
                 <div class="activity-date">${displayDate}</div>
               </div>
-              <div class="activity-amount">${movement.toFixed(2)}${
-      acc.currency
-    }</div>
+              <div class="activity-amount">${formatCur(
+                movement,
+                acc.locale,
+                acc.currency
+              )}</div>
             </article>`;
     bankActivities.insertAdjacentHTML(`afterbegin`, html);
   });
@@ -248,23 +257,35 @@ const displayMovements = function (acc, sort = false) {
 
 const calcAndDisplayBalance = function (acc) {
   acc.totalBalance = acc.movements.reduce((acc, curr) => acc + curr, 0);
-  currentBalance.textContent = ` ${acc.totalBalance.toFixed(2)}${acc.currency}`;
+  currentBalance.textContent = ` ${formatCur(
+    acc.totalBalance,
+    acc.locale,
+    acc.currency
+  )}`;
 };
 
 const calcSummary = function (acc) {
   let moneyIn = acc.movements
     .filter((mov) => mov > 0)
     .reduce((acc, curr) => acc + curr, 0);
-  inSummary.textContent = ` ${moneyIn.toFixed(2)}${acc.currency}`;
+  inSummary.textContent = ` ${formatCur(moneyIn, acc.locale, acc.currency)}`;
   let moneyOut = acc.movements
     .filter((mov) => mov < 0)
     .reduce((acc, curr) => acc + curr, 0);
-  outSummary.textContent = `${Math.abs(moneyOut.toFixed(2))}${acc.currency}`;
+  outSummary.textContent = `${formatCur(
+    Math.abs(moneyOut),
+    acc.locale,
+    acc.currency
+  )}`;
   let interest = acc.movements
     .filter((mov) => mov >= 0)
     .map((dep) => dep * (acc.interestRate / 100))
     .reduce((accu, int) => accu + int, 0);
-  interestSummary.textContent = `${Number(interest.toFixed(2))}${acc.currency}`;
+  interestSummary.textContent = `${formatCur(
+    Number(interest),
+    acc.locale,
+    acc.currency
+  )}`;
 };
 
 const displayUI = function (currentAccount) {
@@ -338,8 +359,8 @@ const sendMoney = function (acc) {
   ) {
     receiverAccount?.movements.push(Number(transferAmount.value));
     currentAccount.movements.push(Number(`-${transferAmount.value}`));
-    currentAccount.movementsDates.push(now.toISOString());
-    receiverAccount.movementsDates.push(now.toISOString());
+    currentAccount.movementsDates.push(new Date().toISOString());
+    receiverAccount.movementsDates.push(new Date().toISOString());
 
     updateDisplay(currentAccount);
   } else if (receiverAccount === undefined || receiverAccount === null) {
@@ -367,7 +388,7 @@ const requestMoney = function (acc) {
 
   if (loan > 0 && TenPercentDeposit) {
     acc.movements.push(loan);
-    acc.movementsDates.push(now.toISOString());
+    acc.movementsDates.push(new Date().toISOString());
     updateDisplay(currentAccount);
   } else if (loan <= 0) {
     alert(`Please enter a valid value!`);
