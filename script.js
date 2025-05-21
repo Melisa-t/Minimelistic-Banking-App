@@ -2,7 +2,7 @@ const userInput = document.querySelector(`.input-name`);
 const userPass = document.querySelector(`.pass`);
 const logInBtn = document.querySelector(`.log-in-btn`);
 
-const date = document.querySelector(`.date`);
+const dateLabel = document.querySelector(`.date`);
 const appContainer = document.querySelector(`.app-container`);
 
 let informativeText = document.querySelector(`.informative-text`);
@@ -46,8 +46,8 @@ const account1 = {
     "2025-05-17T17:01:17.194Z",
     "2025-05-19T23:36:17.929Z",
   ],
+  locale: `bg-BG`,
 };
-
 const account2 = {
   owner: `Kristian Lachev`,
   movements: [200, 400, 500, -300, 1200, -500, 3000],
@@ -63,6 +63,7 @@ const account2 = {
     "2025-05-17T17:01:17.194Z",
     "2025-05-19T23:36:17.929Z",
   ],
+  locale: `bg-BG`,
 };
 
 const account3 = {
@@ -80,6 +81,7 @@ const account3 = {
     "2025-05-17T17:01:17.194Z",
     "2025-05-19T23:36:17.929Z",
   ],
+  locale: `tr-TR`,
 };
 
 const account4 = {
@@ -97,13 +99,14 @@ const account4 = {
     "2025-05-17T17:01:17.194Z",
     "2025-05-19T23:36:17.929Z",
   ],
+  locale: `tr-TR`,
 };
 const account5 = {
   owner: `Buse B.`,
   movements: [43452, 123, 422, -4232, 5242, -2342, 574567],
   interestRate: 2,
   pin: 1111,
-  currency: `$`,
+  currency: `₺`,
   movementsDates: [
     "2025-02-18T17:01:17.194Z",
     "2025-03-19T17:01:17.194Z",
@@ -113,6 +116,7 @@ const account5 = {
     "2025-05-17T17:01:17.194Z",
     "2025-05-19T23:36:17.929Z",
   ],
+  locale: `tr-TR`,
 };
 
 const account6 = {
@@ -130,10 +134,11 @@ const account6 = {
     "2025-05-17T17:01:17.194Z",
     "2025-05-19T23:36:17.929Z",
   ],
+  locale: `zh-CN`,
 };
 
 const account7 = {
-  owner: `Sımay G.`,
+  owner: `Simay G.`,
   movements: [234500, 657, 567, -3453, 654, -3453, 3453],
   interestRate: 1.2,
   pin: 9999,
@@ -147,6 +152,7 @@ const account7 = {
     "2025-05-17T17:01:17.194Z",
     "2025-05-19T23:36:17.929Z",
   ],
+  locale: `zh-CN`,
 };
 
 const account8 = {
@@ -164,6 +170,7 @@ const account8 = {
     "2025-05-17T17:01:17.194Z",
     "2025-05-19T23:36:17.929Z",
   ],
+  locale: `tr-TR`,
 };
 
 const account9 = {
@@ -181,6 +188,7 @@ const account9 = {
     "2025-05-17T17:01:17.194Z",
     "2025-05-19T23:36:17.929Z",
   ],
+  locale: `tr-TR`,
 };
 
 const accounts = [
@@ -195,7 +203,7 @@ const accounts = [
   account9,
 ];
 
-const calcMovementDates = function (date) {
+const calcMovementDates = function (date, locale) {
   const calcDaysPassed = function (date1, date2) {
     return Math.round(Math.abs((date1 - date2) / (1000 * 60 * 60 * 24)));
   };
@@ -204,10 +212,7 @@ const calcMovementDates = function (date) {
   if (daysPassed === 1) return `Yesterday`;
   if (daysPassed <= 7) return `${daysPassed} days ago`;
   else {
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
+    return new Intl.DateTimeFormat(locale).format(date);
   }
 };
 
@@ -223,7 +228,7 @@ const displayMovements = function (acc, sort = false) {
   combinedMovementAndDates.forEach(function (obj, i) {
     const { movement, movementDate } = obj;
     const date = new Date(movementDate);
-    const displayDate = calcMovementDates(date);
+    const displayDate = calcMovementDates(date, acc.locale);
     let type = movement > 0 ? `deposit` : `withdrawal`;
     const html = `             <article class="activity-row">
               <div class="activity-date-type-container">
@@ -299,6 +304,19 @@ logInBtn.addEventListener(`click`, () => {
     //display ui msg, movements, balance, summary
     updateDisplay(currentAccount);
     displayUI(currentAccount);
+    const now = new Date();
+    const options = {
+      hour: "numeric",
+      minute: "numeric",
+      day: "numeric",
+      month: "numeric",
+      year: "numeric",
+    };
+
+    dateLabel.textContent = ` ${new Intl.DateTimeFormat(
+      currentAccount.locale,
+      options
+    ).format(now)}`;
   } else {
     openModal();
     userInput.value = userPass.value = ``;
@@ -439,11 +457,3 @@ document.addEventListener(`keydown`, function (e) {
     closeModal();
   }
 });
-
-const now = new Date();
-const day = `${now.getDate()}`.padStart(2, 0);
-const month = `${now.getMonth() + 1}`.padStart(2, 0);
-const year = now.getFullYear();
-const hour = `${now.getHours()}`.padStart(2, 0);
-const minutes = `${now.getMinutes()}`.padStart(2, 0);
-date.textContent = ` ${day}/${month}/${year}, ${hour}:${minutes}`;
