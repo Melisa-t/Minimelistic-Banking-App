@@ -31,6 +31,8 @@ let outSummary = document.querySelector(`.out-summary`);
 let interestSummary = document.querySelector(`.interest`);
 const sortBtn = document.querySelector(`.sort-btn`);
 
+let logOutText = document.querySelector(`.log-out-notice`);
+
 const account1 = {
   owner: `Melisa Lachev`,
   movements: [200, 400, 500, -300, 1200, -500, 3000],
@@ -293,7 +295,7 @@ const displayUI = function (currentAccount) {
     currentAccount.owner.split(` `)[0]
   }!`;
   userInput.value = userPass.value = ``;
-  appContainer.style.opacity = 100;
+  appContainer.style.display = `flex`;
   userPass.blur();
 };
 
@@ -325,6 +327,7 @@ logInBtn.addEventListener(`click`, () => {
     //display ui msg, movements, balance, summary
     updateDisplay(currentAccount);
     displayUI(currentAccount);
+    startLogOutTimer();
     const now = new Date();
     const options = {
       hour: "numeric",
@@ -420,7 +423,7 @@ const closeAccount = function (currentAccount) {
       (acc) => acc.username === currentAccount.username
     );
     accounts.splice(accIndex, 1);
-    appContainer.style.opacity = 0;
+    appContainer.style.display = `none`;
     informativeText.textContent = `Log in to get started`;
     confirmUser.value = confirmPIN.value = ``;
   }
@@ -478,3 +481,27 @@ document.addEventListener(`keydown`, function (e) {
     closeModal();
   }
 });
+
+const startLogOutTimer = function () {
+  let time = 60;
+
+  const tick = function () {
+    let min = Math.trunc(time / 60);
+    let sec = Math.trunc(time % 60);
+
+    logOutText.textContent = `You will be logged out in ${String(min).padStart(
+      2,
+      0
+    )}:${String(sec).padStart(2, 0)}`;
+
+    time--;
+
+    if (time === 0) {
+      clearInterval(timer);
+      informativeText.textContent = `Log in to get started`;
+      appContainer.style.display = `none`;
+    }
+  };
+  tick();
+  const timer = setInterval(tick, 1000);
+};
