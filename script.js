@@ -43,8 +43,8 @@ const account1 = {
     "2023-01-28T09:15:04.904Z",
     "2024-04-01T10:17:24.185Z",
     "2024-05-08T14:11:59.604Z",
-    "2024-05-27T17:01:17.194Z",
-    "2024-07-11T23:36:17.929Z",
+    "2025-05-17T17:01:17.194Z",
+    "2025-05-19T23:36:17.929Z",
   ],
 };
 
@@ -196,10 +196,19 @@ const accounts = [
 ];
 
 const calcMovementDates = function (date) {
-  const day = `${date.getDate()}`.padStart(2, 0);
-  const month = `${date.getMonth() + 1}`.padStart(2, 0);
-  const year = date.getFullYear();
-  return `${day}/${month}/${year}`;
+  const calcDaysPassed = function (date1, date2) {
+    return Math.round(Math.abs((date1 - date2) / (1000 * 60 * 60 * 24)));
+  };
+  const daysPassed = calcDaysPassed(new Date(), date);
+  if (daysPassed === 0) return `Today`;
+  if (daysPassed === 1) return `Yesterday`;
+  if (daysPassed <= 7) return `${daysPassed} days ago`;
+  else {
+    const day = `${date.getDate()}`.padStart(2, 0);
+    const month = `${date.getMonth() + 1}`.padStart(2, 0);
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
 };
 
 const displayMovements = function (acc, sort = false) {
@@ -214,7 +223,6 @@ const displayMovements = function (acc, sort = false) {
   combinedMovementAndDates.forEach(function (obj, i) {
     const { movement, movementDate } = obj;
     const date = new Date(movementDate);
-
     const displayDate = calcMovementDates(date);
     let type = movement > 0 ? `deposit` : `withdrawal`;
     const html = `             <article class="activity-row">
