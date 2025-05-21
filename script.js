@@ -311,12 +311,13 @@ const createUserName = function (accArr) {
 
 createUserName(accounts);
 
-let currentAccount;
+let currentAccount, timer;
 
 const updateDisplay = function (currentAccount) {
   displayMovements(currentAccount);
   calcAndDisplayBalance(currentAccount);
   calcSummary(currentAccount);
+  resetTimer();
 };
 
 logInBtn.addEventListener(`click`, () => {
@@ -327,7 +328,6 @@ logInBtn.addEventListener(`click`, () => {
     //display ui msg, movements, balance, summary
     updateDisplay(currentAccount);
     displayUI(currentAccount);
-    startLogOutTimer();
     const now = new Date();
     const options = {
       hour: "numeric",
@@ -426,6 +426,7 @@ const closeAccount = function (currentAccount) {
     appContainer.style.display = `none`;
     informativeText.textContent = `Log in to get started`;
     confirmUser.value = confirmPIN.value = ``;
+    if (timer) clearInterval(timer);
   }
 };
 
@@ -483,7 +484,7 @@ document.addEventListener(`keydown`, function (e) {
 });
 
 const startLogOutTimer = function () {
-  let time = 60;
+  let time = 600;
 
   const tick = function () {
     let min = Math.trunc(time / 60);
@@ -494,14 +495,19 @@ const startLogOutTimer = function () {
       0
     )}:${String(sec).padStart(2, 0)}`;
 
-    time--;
-
     if (time === 0) {
       clearInterval(timer);
       informativeText.textContent = `Log in to get started`;
       appContainer.style.display = `none`;
     }
+    time--;
   };
   tick();
   const timer = setInterval(tick, 1000);
+  return timer;
+};
+
+const resetTimer = function () {
+  if (timer) clearInterval(timer);
+  timer = startLogOutTimer();
 };
