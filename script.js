@@ -195,6 +195,13 @@ const accounts = [
   account9,
 ];
 
+const calcMovementDates = function (date) {
+  const day = `${date.getDate()}`.padStart(2, 0);
+  const month = `${date.getMonth() + 1}`.padStart(2, 0);
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+};
+
 const displayMovements = function (acc, sort = false) {
   bankActivities.innerHTML = ``;
   const combinedMovementAndDates = currentAccount.movements.map((mov, i) => ({
@@ -207,10 +214,8 @@ const displayMovements = function (acc, sort = false) {
   combinedMovementAndDates.forEach(function (obj, i) {
     const { movement, movementDate } = obj;
     const date = new Date(movementDate);
-    const day = `${date.getDate()}`.padStart(2, 0);
-    const month = `${date.getMonth() + 1}`.padStart(2, 0);
-    const year = date.getFullYear();
-    const displayDate = `${day}/${month}/${year}`;
+
+    const displayDate = calcMovementDates(date);
     let type = movement > 0 ? `deposit` : `withdrawal`;
     const html = `             <article class="activity-row">
               <div class="activity-date-type-container">
